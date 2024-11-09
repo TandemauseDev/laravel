@@ -11,7 +11,7 @@ class StoreItemRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // Cambiado a true para permitir la autorización
     }
 
     /**
@@ -22,7 +22,17 @@ class StoreItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'category_id' => 'nullable|integer|exists:categories,id', // Ajusta el nombre de la tabla y columna si es necesario
+            'description' => 'nullable|string',
+            'size' => 'nullable|string|max:50',
+            'img1' => 'nullable|string|max:255',
+            'img2' => 'nullable|string|max:255',
+            'img3' => 'nullable|string|max:255',
+            'precautions' => 'nullable|string',
+            'storage' => 'nullable|string',
+            'handling' => 'nullable|string',
+            'uses' => 'nullable|string', // Campo adicional "uses"
         ];
     }
 }

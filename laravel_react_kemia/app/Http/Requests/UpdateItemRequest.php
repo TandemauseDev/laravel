@@ -11,7 +11,7 @@ class UpdateItemRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // Cambiado a true para permitir la autorización
     }
 
     /**
@@ -22,7 +22,17 @@ class UpdateItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'sometimes|required|string|max:255',
+            'category_id' => 'sometimes|nullable|integer|exists:categories,id', // Ajusta el nombre de la tabla y columna si es necesario
+            'description' => 'sometimes|nullable|string',
+            'size' => 'sometimes|nullable|string|max:50',
+            'img1' => 'sometimes|nullable|string|max:255',
+            'img2' => 'sometimes|nullable|string|max:255',
+            'img3' => 'sometimes|nullable|string|max:255',
+            'precautions' => 'sometimes|nullable|string',
+            'storage' => 'sometimes|nullable|string',
+            'handling' => 'sometimes|nullable|string',
+            'uses' => 'sometimes|nullable|string', // Campo adicional "uses"
         ];
     }
 }

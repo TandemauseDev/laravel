@@ -23,6 +23,8 @@ class Item extends Model
         'precautions',
         'storage',
         'handling',
+        'use',
+
     ];
 
     public function category()
